@@ -12,6 +12,21 @@ namespace CQRS_DDD.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "CiLojaEntity",
+                columns: table => new
+                {
+                    CiLojaEntityId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    LojaEntityId = table.Column<int>(type: "integer", nullable: false),
+                    CiMsg = table.Column<string>(type: "text", nullable: false),
+                    Ativa = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CiLojaEntity", x => x.CiLojaEntityId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FrutasEntity",
                 columns: table => new
                 {
@@ -30,6 +45,9 @@ namespace CQRS_DDD.Infrastructure.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CiLojaEntity");
+
             migrationBuilder.DropTable(
                 name: "FrutasEntity");
         }

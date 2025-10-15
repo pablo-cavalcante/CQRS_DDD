@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CQRS_DDD.Infrastructure.Migrations
 {
     [DbContext(typeof(PgsqlContext))]
-    [Migration("20251014220416_CQRS_DDD")]
+    [Migration("20251015153353_CQRS_DDD")]
     partial class CQRS_DDD
     {
         /// <inheritdoc />
@@ -23,6 +23,29 @@ namespace CQRS_DDD.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("CQRS_DDD.Domain.Entities.ComunicadoLojaEntity", b =>
+                {
+                    b.Property<int>("CiLojaEntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CiLojaEntityId"));
+
+                    b.Property<bool>("Ativa")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("CiMsg")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("LojaEntityId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CiLojaEntityId");
+
+                    b.ToTable("CiLojaEntity");
+                });
 
             modelBuilder.Entity("CQRS_DDD.Domain.Entities.FrutasEntity", b =>
                 {

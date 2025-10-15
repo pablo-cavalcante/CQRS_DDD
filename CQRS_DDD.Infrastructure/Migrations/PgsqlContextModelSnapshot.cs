@@ -21,6 +21,29 @@ namespace CQRS_DDD.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("CQRS_DDD.Domain.Entities.ComunicadoLojaEntity", b =>
+                {
+                    b.Property<int>("CiLojaEntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CiLojaEntityId"));
+
+                    b.Property<bool>("Ativa")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("CiMsg")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("LojaEntityId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CiLojaEntityId");
+
+                    b.ToTable("CiLojaEntity");
+                });
+
             modelBuilder.Entity("CQRS_DDD.Domain.Entities.FrutasEntity", b =>
                 {
                     b.Property<int>("FrutasEntityId")

@@ -19,6 +19,7 @@ builder.Services.AddDbContext<PgsqlContext>(options =>
 
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IFrutaRepository, FrutaRepository>();
+builder.Services.AddScoped<ICiLojaRepository, CiLojaRepository>();
 
 #region FrutaCommands
 
@@ -30,6 +31,19 @@ builder.Services.AddScoped<IFrutaRepository, FrutaRepository>();
 
     builder.Services.AddMediatR(cfg =>
         cfg.RegisterServicesFromAssembly(typeof(DeleteFrutaCommand).Assembly));
+
+#endregion
+
+#region ComunicadoLojaCommands
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(CreateComunicadoLojaCommand).Assembly));
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(UpdateComunicadoLojaCommand).Assembly));
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(DeleteComunicadoLojaCommand).Assembly));
 
 #endregion
 

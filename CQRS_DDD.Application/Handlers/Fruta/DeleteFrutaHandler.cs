@@ -4,7 +4,7 @@ using CQRS_DDD.Domain.Interfaces;
 using CQRS_DDD.Domain.Responses;
 
 #pragma warning disable
-namespace CQRS_DDD.Application.Handlers
+namespace CQRS_DDD.Application.Handlers.Fruta
 {
     public class DeleteFrutaHandler : IRequestHandler<DeleteFrutaCommand, APIResponse>
     {
@@ -22,7 +22,7 @@ namespace CQRS_DDD.Application.Handlers
         {
             try
             {
-                var fruta = await this.repository.FindAsync(request.FrutasEntityId, cancellationToken);
+                var fruta = await repository.FindAsync(request.FrutasEntityId, cancellationToken);
                 APIResponse response = new APIResponse();
 
                 if (fruta == null)
@@ -31,9 +31,9 @@ namespace CQRS_DDD.Application.Handlers
                     return response;
                 }
 
-                this.repository.BeginTransaction();
-                await this.repository.Delete(fruta, cancellationToken);
-                this.repository.CommitTransaction();
+                repository.BeginTransaction();
+                await repository.Delete(fruta, cancellationToken);
+                repository.CommitTransaction();
 
                 response.setSuccessResponse("Fruta removida com sucesso!", fruta);
 
@@ -41,7 +41,7 @@ namespace CQRS_DDD.Application.Handlers
             }
             catch (Exception ex)
             {
-                this.repository.RollbackTransaction();
+                repository.RollbackTransaction();
                 throw new ApplicationException($"Erro ao criar fruta '{request.FrutasEntityId}': {ex.Message}", ex);
             }
         } 

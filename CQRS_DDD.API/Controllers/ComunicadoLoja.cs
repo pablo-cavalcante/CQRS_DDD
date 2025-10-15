@@ -1,57 +1,59 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using CQRS_DDD.Application.Commands.Fruta;
+﻿using CQRS_DDD.Application.Commands.Fruta;
+using CQRS_DDD.Application.Queries.ComunicadoLoja;
 using CQRS_DDD.Application.Queries.Fruta;
 using CQRS_DDD.Domain.Responses;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 #pragma warning disable
-namespace CQRS_DDD.Controllers
+namespace CQRS_DDD.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FrutasController : ControllerBase
+    public class ComunicadoLoja : ControllerBase
     {
         #region MyRegion
         private readonly IMediator _mediator;
 
-        public FrutasController(IMediator mediator)
+        public ComunicadoLoja(IMediator mediator)
         {
             _mediator = mediator;
-        } 
+        }
         #endregion
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         #region MyRegion
         {
-            var frutas = await _mediator.Send(new GetAllFrutaQuery());
+            var comunicado = await _mediator.Send(new GetAllComunicadoLojaQuery());
             APIResponse response = new();
-            response.setSuccessResponse("OK", frutas);
+            response.setSuccessResponse("OK", comunicado);
             return CreatedAtAction(nameof(GetAll), null, response);
-        } 
+        }
         #endregion
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         #region MyRegion
         {
-            var fruta = await _mediator.Send(new GetFrutaByIdQuery { FrutasEntityId = id });
+            var comunicado = await _mediator.Send(new GetComunicadoLojaByIdQuery { CiLojaEntityId = id });
             APIResponse response = new();
 
-            if (fruta == null) {
-                response.setErrorReponsePlain("Fruta não encontrada");
-            } 
+            if (comunicado == null)
+            {
+                response.setErrorReponsePlain("Comunicado não encontrado");
+            }
             else
             {
-                response.setSuccessResponse("OK", fruta);
+                response.setSuccessResponse("OK", comunicado);
             }
 
             return CreatedAtAction(nameof(GetById), id, response);
-        } 
+        }
         #endregion
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateFrutaCommand command)
+        public async Task<IActionResult> Create(CreateComunicadoLojaCommand command)
         #region MyRegion
         {
             var response = await _mediator.Send(command);
@@ -60,7 +62,7 @@ namespace CQRS_DDD.Controllers
         #endregion
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateFrutaCommand command)
+        public async Task<IActionResult> Update(UpdateComunicadoLojaCommand command)
         #region MyRegion
         {
             var response = await _mediator.Send(command);
@@ -69,7 +71,7 @@ namespace CQRS_DDD.Controllers
         #endregion
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(DeleteFrutaCommand command)
+        public async Task<IActionResult> Delete(DeleteComunicadoLojaCommand command)
         #region MyRegion
         {
             var response = await _mediator.Send(command);

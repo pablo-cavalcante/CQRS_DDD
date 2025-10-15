@@ -2,7 +2,7 @@
 using CQRS_DDD.Domain.Entities;
 
 #pragma warning disable
-namespace CQRS_DDD.Application.Queries
+namespace CQRS_DDD.Application.Queries.Fruta
 {
     public class GetFrutaByIdQuery : IRequest<FrutasEntity?>
     {

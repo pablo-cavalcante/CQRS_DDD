@@ -5,7 +5,7 @@ using CQRS_DDD.Domain.Interfaces;
 using CQRS_DDD.Domain.Responses;
 
 #pragma warning disable
-namespace CQRS_DDD.Application.Handlers
+namespace CQRS_DDD.Application.Handlers.Fruta
 {
     public class CreateFrutaHandler : IRequestHandler<CreateFrutaCommand, APIResponse>
     {
@@ -30,9 +30,9 @@ namespace CQRS_DDD.Application.Handlers
                     Ativa = request.Ativa
                 };
 
-                this._context.BeginTransaction();
-                await this._context.Add(fruta, cancellationToken);
-                this._context.CommitTransaction();
+                _context.BeginTransaction();
+                await _context.Add(fruta, cancellationToken);
+                _context.CommitTransaction();
 
                 APIResponse response = new();
                 response.setSuccessResponse("Fruta criada com sucesso!", fruta);
@@ -41,7 +41,7 @@ namespace CQRS_DDD.Application.Handlers
             }
             catch (Exception ex)
             {
-                this._context.RollbackTransaction();
+                _context.RollbackTransaction();
                 throw new ApplicationException($"Erro ao criar fruta '{request.Nome}': {ex.Message}", ex);
             }
         }

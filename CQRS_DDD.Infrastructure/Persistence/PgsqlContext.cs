@@ -9,5 +9,7 @@ namespace CQRS_DDD.Infrastructure.Persistence
         public PgsqlContext(DbContextOptions<PgsqlContext> options) : base(options) {  }
 
         public DbSet<FrutasEntity> frutas { get; set; }
+
+        public DbSet<ComunicadoLojaEntity> ciLojas { get; set; }
     }
 }

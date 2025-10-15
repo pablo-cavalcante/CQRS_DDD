@@ -3,7 +3,7 @@ using CQRS_DDD.Domain.Entities;
 using CQRS_DDD.Domain.Interfaces;
 
 #pragma warning disable
-namespace CQRS_DDD.Application.Queries
+namespace CQRS_DDD.Application.Queries.Fruta
 {
     public class GetFrutaByIdHandler : IRequestHandler<GetFrutaByIdQuery, FrutasEntity?>
     {
@@ -19,7 +19,7 @@ namespace CQRS_DDD.Application.Queries
         public async Task<FrutasEntity?> Handle(GetFrutaByIdQuery request, CancellationToken cancellationToken)
         #region MyRegion
         {
-            return await this.repository.FindAsync(request.FrutasEntityId, cancellationToken);
+            return await repository.FindAsync(request.FrutasEntityId, cancellationToken);
         } 
         #endregion
     }
