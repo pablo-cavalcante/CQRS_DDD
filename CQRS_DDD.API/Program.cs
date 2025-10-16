@@ -71,3 +71,5 @@ app.UseEndpoints(endpoints => {
 });
 
 app.Run();
+
+public partial class Program { } // <- necessário para testes de integração
