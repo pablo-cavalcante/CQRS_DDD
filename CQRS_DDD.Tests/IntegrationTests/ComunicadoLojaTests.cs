@@ -43,7 +43,7 @@ namespace CQRS_DDD.Tests.IntegrationTests
         {
             TestContext.WriteLine("🔍 Iniciando teste de CRUD do comunicado da loja...");
 
-            #region CreateFrutaCommand
+            #region CreateComunicadoLojaCommand
             //Inicio da criação de nova fruta
             var command = new CreateComunicadoLojaCommand
             {
@@ -97,7 +97,7 @@ namespace CQRS_DDD.Tests.IntegrationTests
             #endregion
             TestContext.WriteLine("➡️ Teste WhenNotExists concluído com sucesso!");
 
-            #region UpdateFrutaCommand
+            #region UpdateComunicadoLojaCommand
             //Inicio da atualização da fruta
             var commandUpdate = new UpdateComunicadoLojaCommand
             {
@@ -121,7 +121,7 @@ namespace CQRS_DDD.Tests.IntegrationTests
             #endregion
             TestContext.WriteLine("➡️ Teste Update concluído com sucesso!");
 
-            #region DeleteFrutaCommand
+            #region DeleteComunicadoLojaCommand
             //Inicio da remoção da fruta
             var commandUDelete = new DeleteComunicadoLojaCommand
             {

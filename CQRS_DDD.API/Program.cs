@@ -4,6 +4,7 @@ using CQRS_DDD.Application.Commands.Fruta;
 using CQRS_DDD.Domain.Interfaces;
 using CQRS_DDD.Infrastructure.Persistence;
 using CQRS_DDD.Infrastructure.Repositories;
+using CQRS_DDD.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<PgsqlContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IFrutaRepository, FrutaRepository>();
 builder.Services.AddScoped<ICiLojaRepository, CiLojaRepository>();
@@ -46,6 +48,8 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(DeleteComunicadoLojaCommand).Assembly));
 
 #endregion
+
+builder.Services.AddHostedService<RabbitMqConsumerService>();
 
 var app = builder.Build();
 
