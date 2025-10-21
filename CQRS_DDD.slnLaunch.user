@@ -5,7 +5,7 @@
       {
         "Path": "CQRS_DDD.API\\CQRS_DDD.API.csproj",
         "Action": "Start",
-        "DebugTarget": "IIS Express"
+        "DebugTarget": "https"
       },
       {
         "Path": "CQRS_DDD.Presentation\\CQRS_DDD.Presentation\\CQRS_DDD.Presentation.csproj",
