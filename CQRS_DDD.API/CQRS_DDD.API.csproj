@@ -6,26 +6,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.6" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="13.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.6" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CQRS_DDD.Application\CQRS_DDD.Application.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\CQRS_DDD.Application\CQRS_DDD.Application.csproj" />
+	  <ProjectReference Include="..\CQRS_DDD.Domain\CQRS_DDD.Domain.csproj" />
+	</ItemGroup>
 
 	<Target Name="CopyDepsFile" AfterTargets="Build">
-		<Copy
-		  SourceFiles="$(ProjectDir)..\CQRS_DDD\bin\Debug\net9.0\CQRS_DDD.deps.json"
-		  DestinationFolder="$(OutputPath)"
-		  SkipUnchangedFiles="true"
-		  Condition="Exists('$(ProjectDir)..\CQRS_DDD\bin\Debug\net9.0\CQRS_DDD.deps.json')" />
+		<Copy SourceFiles="$(ProjectDir)..\CQRS_DDD\bin\Debug\net9.0\CQRS_DDD.deps.json" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true" Condition="Exists('$(ProjectDir)..\CQRS_DDD\bin\Debug\net9.0\CQRS_DDD.deps.json')" />
 	</Target>
 
 </Project>

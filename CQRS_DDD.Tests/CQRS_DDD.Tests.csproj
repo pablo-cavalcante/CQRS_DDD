@@ -17,9 +17,10 @@
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
 	</ItemGroup>
 
-
-  <ItemGroup>
-    <ProjectReference Include="..\CQRS_DDD.API\CQRS_DDD.API.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\CQRS_DDD.API\CQRS_DDD.API.csproj" />
+	  <ProjectReference Include="..\CQRS_DDD.Application\CQRS_DDD.Application.csproj" />
+	  <ProjectReference Include="..\CQRS_DDD.Domain\CQRS_DDD.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

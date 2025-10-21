@@ -1,10 +1,10 @@
 #pragma warning disable
-using Microsoft.EntityFrameworkCore;
 using CQRS_DDD.Application.Commands.Fruta;
+using CQRS_DDD.Application.Services;
 using CQRS_DDD.Domain.Interfaces;
 using CQRS_DDD.Infrastructure.Persistence;
 using CQRS_DDD.Infrastructure.Repositories;
-using CQRS_DDD.Application.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new() { Title = "Teste Project", Version = "v1"});
+    c.SwaggerDoc("v1", new() { Title = "Teste Project", Version = "v1" });
 });
 
 builder.Services.AddDbContext<PgsqlContext>(options =>
@@ -25,14 +25,14 @@ builder.Services.AddScoped<ICiLojaRepository, CiLojaRepository>();
 
 #region FrutaCommands
 
-    builder.Services.AddMediatR(cfg =>
-        cfg.RegisterServicesFromAssembly(typeof(CreateFrutaCommand).Assembly));
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(CreateFrutaCommand).Assembly));
 
-    builder.Services.AddMediatR(cfg =>
-        cfg.RegisterServicesFromAssembly(typeof(UpdateFrutaCommand).Assembly));
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(UpdateFrutaCommand).Assembly));
 
-    builder.Services.AddMediatR(cfg =>
-        cfg.RegisterServicesFromAssembly(typeof(DeleteFrutaCommand).Assembly));
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(DeleteFrutaCommand).Assembly));
 
 #endregion
 

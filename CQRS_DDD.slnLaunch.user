@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "CQRS_DDD.API\\CQRS_DDD.API.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      },
+      {
+        "Path": "CQRS_DDD.Presentation\\CQRS_DDD.Presentation\\CQRS_DDD.Presentation.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      }
+    ]
+  }
+]
